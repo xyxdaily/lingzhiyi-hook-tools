@@ -50,7 +50,9 @@ findAbstractImpl("java.net.HttpURLConnection")  //com.android.okhttp.internal.hu
 ----
 
 ## hook_RegisterNatives_new函数
+
 对动态注册的函数进行hook，获取其注册到的类名，签名以及so的文件名和偏移。
+
 ----
 
 ## future等待实现
