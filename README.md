@@ -4,7 +4,7 @@
 本脚本的核心api是frida的Java.enumerateMethods，几乎每个函数都用到了这个api，因此对于frida版本有一定要求，建议用最新版（不低于14）
 
 以下函数建议在交互界面运行，如果有额外需求，可以自行修改。
-
+对于spawn模式运行，还会存在一些问题，暂时没考虑。
 
 ## find函数
 学会使用正则匹配，将快速定位到相关类以及方法，为后续的hook作准备
@@ -34,8 +34,9 @@ traceAllMethod("*http*","$init","[B") //对类名中包含了http的类进行hoo
 ## searchOneInstance函数
 搜索某个类的实例， 并将最后一个实例保存到currentIns以供后续的主动调用
 ```js
-searchOneInstance("okhttp3.Request") // 搜索okhttp3.Request的实例;
-console.log(currentIns.headers()) // 建议先在交互界面调用currentIns.headers()方法，如果出现
+searchOneInstance("android.os.Build") // 搜索android.os.Build的实例;
+currentIns.getRadioVersion() // 
+searchOneInstance("android.os.Build$VERSION") // 搜索android.os.Build的实例;
 ```
 ----
 
