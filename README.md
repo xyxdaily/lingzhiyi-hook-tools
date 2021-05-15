@@ -10,9 +10,7 @@ traceOneMethod("javax.crypto.Cipher.doFinal","[B") // 传入方法签名的时�
 
 ## traceAllMethod函数
 ```js
-traceAllMethod("*http*") //对类名中包含了http的类进行hook，批量hook成千上万个函数;
-traceAllMethod("*http*","$init")// 对类名中包含了http的类进行hook，仅批量hook他们的构造函数;
-traceAllMethod("*http*","$init","[B") //对类名中包含了http的类进行hook，批量hook他们的构造函数，过滤出参数为[B的函数;
+traceAllMethod(".*http.*") //对类名中包含了http的类进行hook，批量hook成千上万个函数;
 ```
 ----
 
