@@ -1,19 +1,4 @@
 # lingzhiyi-hook-tools
-本脚本是一个基于frida的脚本，主要参考了objection以及r0trace的代码，实现了objection的常用功能
-
-本脚本的核心api是frida的Java.enumerateMethods，几乎每个函数都用到了这个api，因此对于frida版本有一定要求，建议用最新版（不低于14）
-
-以下函数建议在交互界面运行，如果有额外需求，可以自行修改。
-对于spawn模式运行，还会存在一些问题，暂时没考虑。
-
-## find函数
-学会使用正则匹配，将快速定位到相关类以及方法，为后续的hook作准备
-```js
-find("","") // 查找所有类的所有方法，不建议使用
-find("*Base64*","") // 查找所有类名包含Base64的所有方法;
-find("","decode") // 查找所有类的方法名为decode的方法;
-```
-----
 
 ## traceOneMethod函数
 要求传入的方法名为完整的方法名
@@ -28,24 +13,6 @@ traceOneMethod("javax.crypto.Cipher.doFinal","[B") // 传入方法签名的时�
 traceAllMethod("*http*") //对类名中包含了http的类进行hook，批量hook成千上万个函数;
 traceAllMethod("*http*","$init")// 对类名中包含了http的类进行hook，仅批量hook他们的构造函数;
 traceAllMethod("*http*","$init","[B") //对类名中包含了http的类进行hook，批量hook他们的构造函数，过滤出参数为[B的函数;
-```
-----
-
-## searchOneInstance函数
-搜索某个类的实例， 并将最后一个实例保存到currentIns以供后续的主动调用
-```js
-searchOneInstance("android.os.Build") // 搜索android.os.Build的实例;
-currentIns.getRadioVersion() // 
-searchOneInstance("android.os.Build$VERSION") // 搜索android.os.Build的实例;
-```
-----
-
-
-## findAbstractImpl函数
-搜索某个抽象类的实现类，还有些细节没有优化好
-```js
-findAbstractImpl("android.hardware.SensorManager")      //android.hardware.SystemSensorManager
-findAbstractImpl("java.net.HttpURLConnection")  //com.android.okhttp.internal.huc.HttpURLConnectionImpl
 ```
 ----
 
